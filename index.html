@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Channel Saya</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="profil">
+    <img src="img/profile.jpg" alt="Foto Profil" class="foto">
+    <h1>Nama Channel Anda</h1>
+    <p class="deskripsi">Deskripsi singkat channel Anda di sini.</p>
+
+    <div class="tombol-grup">
+      <a href="https://youtube.com/@channelanda" target="_blank" class="btn btn-utama">▶ Subscribe</a>
+      <a href="https://saweria.co/usernameanda" target="_blank" class="btn btn-donasi">💰 Donasi</a>
+      <button class="btn btn-share" onclick="bagikan()">🔗 Bagikan</button>
+    </div>
+  </header>
+
+  <section class="section">
+    <h2>🎬 Video Terbaru</h2>
+    <div id="video-terbaru" class="grid-video"></div>
+  </section>
+
+  <section class="section">
+    <h2>🔥 Video Terpopuler</h2>
+    <div id="video-populer" class="grid-video"></div>
+  </section>
+
+  <section class="section">
+    <h2>💬 Komentar</h2>
+    <div id="disqus_thread"></div>
+  </section>
+
+  <footer>
+    <p>© 2026 Nama Channel Anda. Dibuat dengan 💚</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
