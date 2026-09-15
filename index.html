@@ -3,41 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Channel Saya</title>
+  <title>Yulian Alpen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
 
-  <header class="profil">
-    <img src="img/profile.jpg" alt="Foto Profil" class="foto">
-    <h1>Nama Channel Anda</h1>
-    <p class="deskripsi">Deskripsi singkat channel Anda di sini.</p>
+  <nav class="nav">
+    <div class="nav-inner">
+      <span class="logo">🍈 Yulian</span>
+      <a href="https://youtube.com/@channelanda" target="_blank" class="nav-btn">Subscribe</a>
+    </div>
+  </nav>
 
-    <div class="tombol-grup">
-      <a href="https://youtube.com/@channelanda" target="_blank" class="btn btn-utama">▶ Subscribe</a>
-      <a href="https://saweria.co/usernameanda" target="_blank" class="btn btn-donasi">💰 Donasi</a>
-      <button class="btn btn-share" onclick="bagikan()">🔗 Bagikan</button>
+  <header class="hero">
+    <div class="hero-card">
+      <img src="img/profile.jpg" alt="Profil" class="foto">
+      <h1>Yulian Alpen</h1>
+      <p class="deskripsi">Berbagi karya & cerita setiap hari ✨</p>
+      <div class="tombol-grup">
+        <a href="https://youtube.com/@channelanda" target="_blank" class="btn btn-utama">▶ YouTube</a>
+        <a href="https://saweria.co/usernameanda" target="_blank" class="btn btn-donasi">💰 Donasi</a>
+        <button class="btn btn-share" onclick="bagikan()">🔗 Bagikan</button>
+      </div>
     </div>
   </header>
 
   <section class="section">
-    <h2>🎬 Video Terbaru</h2>
-    <div id="video-terbaru" class="grid-video"></div>
+    <div class="filter-bar">
+      <button class="chip aktif" data-filter="semua">Semua</button>
+      <button class="chip" data-filter="Anime">🎨 Anime</button>
+      <button class="chip" data-filter="Film">🎬 Film</button>
+      <button class="chip" data-filter="Game">🎮 Game</button>
+      <button class="chip" data-filter="AI">🤖 AI</button>
+    </div>
+
+    <div id="feed" class="feed">
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+    </div>
   </section>
 
-  <section class="section">
-    <h2>🔥 Video Terpopuler</h2>
-    <div id="video-populer" class="grid-video"></div>
-  </section>
-
-  <section class="section">
-    <h2>💬 Komentar</h2>
-    <div id="disqus_thread"></div>
-  </section>
-
-  <footer>
-    <p>© 2026 Nama Channel Anda. Dibuat dengan 💚</p>
-  </footer>
+  <footer><p>© 2026 Yulian Alpen · Dibuat dengan 💚</p></footer>
 
   <script src="script.js"></script>
 </body>
