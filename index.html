@@ -3,50 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Yulian Alpen</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <title>Rahasia Sy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <span class="logo">🍈 Yulian</span>
-      <a href="https://youtube.com/@channelanda" target="_blank" class="nav-btn">Subscribe</a>
-    </div>
-  </nav>
-
-  <header class="hero">
-    <div class="hero-card">
-      <img src="img/profile.jpg" alt="Profil" class="foto">
-      <h1>Yulian Alpen</h1>
-      <p class="deskripsi">Berbagi karya & cerita setiap hari ✨</p>
-      <div class="tombol-grup">
-        <a href="https://youtube.com/@channelanda" target="_blank" class="btn btn-utama">▶ YouTube</a>
-        <a href="https://saweria.co/usernameanda" target="_blank" class="btn btn-donasi">💰 Donasi</a>
-        <button class="btn btn-share" onclick="bagikan()">🔗 Bagikan</button>
+  <!-- TOP NAV -->
+  <header class="topnav">
+    <div class="topnav-inner">
+      <div class="brand">
+        <span class="brand-icon">🍈</span>
+        <span class="brand-name">Rahasia Sy</span>
       </div>
+      <input type="text" class="search" placeholder="Cari konten...">
+      <a href="https://github.com/yulian-a/website-ku/issues/new" target="_blank" class="upload-btn">+ Upload</a>
     </div>
   </header>
 
-  <section class="section">
-    <div class="filter-bar">
-      <button class="chip aktif" data-filter="semua">Semua</button>
-      <button class="chip" data-filter="Anime">🎨 Anime</button>
-      <button class="chip" data-filter="Film">🎬 Film</button>
-      <button class="chip" data-filter="Game">🎮 Game</button>
-      <button class="chip" data-filter="AI">🤖 AI</button>
-    </div>
-
-    <div id="feed" class="feed">
-      <div class="skeleton"></div>
-      <div class="skeleton"></div>
+  <!-- BANNER -->
+  <section class="banner">
+    <div class="banner-inner">
+      <h2>Rahasia Sy</h2>
+      <p>Berbagi Cerita, Fakta dan Inspirasi</p>
     </div>
   </section>
 
-  <footer><p>© 2026 Yulian Alpen · Dibuat dengan 💚</p></footer>
+  <!-- PROFIL -->
+  <section class="profil-wrap">
+    <div class="profil-card">
+      <img src="img/profile.jpg" alt="Profil" class="foto">
+      <div class="profil-info">
+        <h1>Rahasia Sy <span class="verified">✓</span></h1>
+        <p class="handle">@RahasiaSy</p>
+        <p class="deskripsi">Selamat datang di Rahasia Sy! Di sini kamu akan menemukan video tentang anime, teknologi, kehidupan, dan hal-hal menarik lainnya.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABS / FILTER -->
+  <nav class="tabs">
+    <button class="tab aktif" data-filter="semua">🏠 Beranda</button>
+    <button class="tab" data-filter="Anime">🎨 Anime</button>
+    <button class="tab" data-filter="Film">🎬 Film</button>
+    <button class="tab" data-filter="Game">🎮 Game</button>
+    <button class="tab" data-filter="AI">🤖 AI</button>
+  </nav>
+
+  <!-- MAIN GRID + SIDEBAR -->
+  <div class="layout">
+    <main class="main-content">
+      <h2 class="section-title">📺 Konten Terbaru</h2>
+      <div id="feed" class="feed">
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="side-card">
+        <h3>📌 Tentang Channel</h3>
+        <p>Rahasia Sy adalah tempat berbagi cerita, fakta, dan inspirasi dari dunia anime, teknologi, kehidupan, dan hal-hal menarik lainnya.</p>
+      </div>
+
+      <div class="side-card">
+        <h3>🔗 Sosial Media</h3>
+        <ul class="sosmed">
+          <li><a href="#">▶ YouTube</a></li>
+          <li><a href="#">📷 Instagram</a></li>
+          <li><a href="#">✈ Telegram</a></li>
+          <li><a href="#">🎵 TikTok</a></li>
+        </ul>
+      </div>
+
+      <div class="side-card cta">
+        <h3>💚 Dukung Saya</h3>
+        <p>Traktir saya segelas kopi biar terus berkarya!</p>
+        <a href="https://saweria.co/usernameanda" target="_blank" class="btn-donasi">💰 Donasi</a>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <p>© 2026 Rahasia Sy · Dibuat dengan 💚</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
