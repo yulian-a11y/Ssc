@@ -1,53 +1,73 @@
-async function muatVideo() {
+// ===== GANTI 2 BARIS INI DENGAN PUNYA ANDA =====
+const USERNAME = 'yulian-a';      // username GitHub Anda
+const REPO = 'website-ku';         // nama repo
+// ================================================
+
+let semuaKonten = [];
+let filterAktif = 'semua';
+
+async function ambilKonten() {
   try {
-    const res = await fetch('data.json');
+    const res = await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/issues?state=open&per_page=50`);
     const data = await res.json();
-    render('video-terbaru', data.terbaru);
-    render('video-populer', data.populer);
+    semuaKonten = data.filter(i => !i.pull_request).map(i => ({
+      judul: i.title,
+      deskripsi: (i.body || '').split('\n')[0].slice(0, 120),
+      gambar: ambilGambar(i.body || ''),
+      tanggal: new Date(i.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }),
+      label: i.labels.map(l => l.name),
+      url: i.html_url
+    }));
+    render();
   } catch (err) {
-    console.error('Gagal memuat data.json:', err);
+    document.getElementById('feed').innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#7A8A68;">Belum ada konten. Upload pertama Anda lewat GitHub Issues!</p>';
   }
 }
 
-function render(targetId, daftar) {
-  const target = document.getElementById(targetId);
-  target.innerHTML = '';
-  daftar.forEach(v => {
-    const div = document.createElement('div');
-    div.className = 'kartu-video';
-    div.innerHTML = `
-      <iframe
-        src="https://www.youtube.com/embed/${v.id}"
-        title="${v.judul}"
-        loading="lazy"
-        allowfullscreen>
-      </iframe>
-      <div class="judul">${v.judul}</div>
-    `;
-    target.appendChild(div);
-  });
+function ambilGambar(text) {
+  const md = text.match(/!\[.*?\]\((.*?)\)/);
+  if (md) return md[1];
+  const html = text.match(/<img[^>]+src="([^"]+)"/);
+  if (html) return html[1];
+  return null;
 }
+
+function render() {
+  const feed = document.getElementById('feed');
+  const data = filterAktif === 'semua' ? semuaKonten : semuaKonten.filter(k => k.label.includes(filterAktif));
+  
+  if (data.length === 0) {
+    feed.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#7A8A68;padding:40px 20px;">Belum ada konten di kategori ini.</p>';
+    return;
+  }
+  
+  feed.innerHTML = data.map(k => `
+    <a href="${k.url}" target="_blank" class="kartu">
+      ${k.gambar ? `<img src="${k.gambar}" alt="${k.judul}" loading="lazy">` : ''}
+      <div class="kartu-body">
+        <h3>${k.judul}</h3>
+        <p>${k.deskripsi}...</p>
+        <div class="meta">
+          ${k.label.map(l => `<span class="tag ${l === 'AI' ? 'ai' : ''}">${l}</span>`).join('')}
+          <span>📅 ${k.tanggal}</span>
+        </div>
+      </div>
+    </a>
+  `).join('');
+}
+
+document.querySelectorAll('.chip').forEach(c => {
+  c.addEventListener('click', () => {
+    document.querySelectorAll('.chip').forEach(x => x.classList.remove('aktif'));
+    c.classList.add('aktif');
+    filterAktif = c.dataset.filter;
+    render();
+  });
+});
 
 function bagikan() {
-  const data = {
-    title: document.title,
-    text: 'Cek channel YouTube saya!',
-    url: window.location.href
-  };
-  if (navigator.share) {
-    navigator.share(data).catch(() => {});
-  } else {
-    navigator.clipboard.writeText(window.location.href);
-    alert('Link sudah dicopy!');
-  }
+  if (navigator.share) navigator.share({ title: document.title, url: location.href });
+  else { navigator.clipboard.writeText(location.href); alert('Link dicopy!'); }
 }
 
-(function() {
-  const d = document;
-  const s = d.createElement('script');
-  s.src = 'https://nama-channel-anda.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
-})();
-
-muatVideo();
+ambilKonten();
